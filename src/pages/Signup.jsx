@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Eye from "../ui/eye/Eye";
 
 const Signup = () => {
@@ -26,13 +24,9 @@ const Signup = () => {
       setTimeout(() => {
         document.querySelector(".alert ").innerHTML = "";
       }, 3000);
-    } else {
-      toast.success("Signup Successfull", {
-        position: "top-right",
-      });
-      navigate("/dashboard");
+    } 
+    navigate("/dashboard");
     }
-  };
 
   return (
       <div className="mx-auto bg-white w-[480px] md:w-[550px] h-[500px] flex flex-col justify-center rounded-md">
@@ -107,7 +101,8 @@ const Signup = () => {
           </div>
         </form>
       </div>
-  );
+  )
 };
+
 
 export default Signup;
