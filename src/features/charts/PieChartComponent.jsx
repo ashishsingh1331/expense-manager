@@ -23,6 +23,7 @@ const PieChartComponent = ({ data, colors }) => {
           innerRadius={0}
           outerRadius={80}
           label
+          fill="#8884d8"
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[index]} />

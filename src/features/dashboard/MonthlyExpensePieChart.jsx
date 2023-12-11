@@ -11,7 +11,6 @@ const MonthlyExpensePieChart = () => {
     const fetchDatas = async () => {
       const res = await fetch("https://api.coincap.io/v2/assets/?limit=20");
       let data = await res.json();
-      console.log(data);
 
       // Todo: Replace hardcoded data with API response
       data = [
