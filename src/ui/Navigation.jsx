@@ -1,26 +1,38 @@
 import { Link } from "react-router-dom";
+import Logo from "../assets/logo.png";
 
 const Navigation = () => {
   return (
-    <nav className="bg-blue-500 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white font-bold text-xl">Expense manager</div>
-        <div className="space-x-4">
-          <Link to="/" className="text-white hover:text-gray-300">
+      <nav className="w-full flex align-middle justify-between px-10 bg-white mb-4 py-3">
+        <div className="logo flex align-middle justify-between items-center">
+          <img src={Logo} className="w-[40px]" alt="" />
+          <span className="text-3xl">$pendee</span>
+        </div>
+
+        <div className="nav flex items-center gap-4">
+          <Link
+            className="text-md font-semibold text-gray-500"
+            to="/"
+          >
             Home
           </Link>
-          <Link to="/dashboard" className="text-white hover:text-gray-300">
+          <Link
+            className="text-md font-semibold text-gray-500"
+            to="/dashboard"
+          >
             Dashboard
           </Link>
-          <Link to="/settings" className="text-white hover:text-gray-300">
+          <Link
+            className="text-md font-semibold text-gray-500"
+            to="/settings"
+          >
             Settings
           </Link>
-          <Link to="/login" className="text-white hover:text-gray-300">
+          <Link className="text-md font-semibold text-gray-500" to="/login">
             Login
           </Link>
         </div>
-      </div>
-    </nav>
+      </nav>
   );
 };
 
