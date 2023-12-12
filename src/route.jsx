@@ -5,6 +5,7 @@ import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Error from "./ui/Error";
+import ExpenseList from "./features/expense/ExpenseList";
 
 const routes = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ const routes = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/transactions",
+        element: <ExpenseList />,
+        loader: expenseLoader,
       },
     ],
   },
