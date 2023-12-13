@@ -1,7 +1,10 @@
 import toast from "react-hot-toast";
 import supabase from "./supabase";
-export async function getExpenses() {
-  const { data, error } = await supabase.from("expense").select("*");
+export async function getExpenses(userId) {
+  const { data, error } = await supabase
+    .from("expense")
+    .select("*")
+    .eq("userId", userId);
 
   if (error) {
     console.error("Expenses can not be loaded");
@@ -20,6 +23,7 @@ export async function addExpense(expense) {
         expenseDetail: expense.label,
         expenseCategory: expense.category,
         expenseAmount: expense.amount,
+        userId: expense.userId,
       },
     ])
     .select();

@@ -7,24 +7,21 @@ import { getExpenses } from "../services/apiExpense";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { updateExpenses } from "../features/expense/ExpenseSlice";
+import { getUserId } from "../features/user/userSlice";
+import useGetUserExpenses from "../hooks/useGetUserExpenses";
 function Dashboard() {
-  let expenses = useLoaderData();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(updateExpenses(expenses));
-  }, [dispatch, expenses]);
-
+  useGetUserExpenses();
+  const expenses = useSelector((state) => state.expense.expenses);
   return (
     <div>
       <ExpenseAdd />
       <div className="flex flex-wrap">
         <div className="w-1/2 p-4">
-          <MonthlyExpenseBarChart />
+          <MonthlyExpenseBarChart expenses={expenses} />
         </div>
         <div className="w-1/2 p-4">
           <div className=" text-white p-4 rounded">
-            <MonthlyExpensePieChart />
+            <MonthlyExpensePieChart expenses={expenses} />
           </div>
         </div>
         <div className="w-1/2 p-4">

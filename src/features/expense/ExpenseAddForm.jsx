@@ -2,7 +2,7 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addExpenseThunk } from "./ExpenseSlice";
 
 const ExpenseAddForm = () => {
@@ -11,12 +11,13 @@ const ExpenseAddForm = () => {
   const [label, setLabel] = useState("");
   const [amount, setAmount] = useState("");
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const userId = user.user.id;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your form submission logic here
-    // console.log("Form submitted:", { category, date, label, amount });
-    dispatch(addExpenseThunk({ category, date, label, amount }));
+    dispatch(addExpenseThunk({ category, date, label, amount, userId }));
   };
 
   return (

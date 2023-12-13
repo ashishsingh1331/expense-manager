@@ -1,19 +1,26 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ExpenseListItem from "./ExpenseListItem";
-import { useLoaderData } from "react-router-dom";
+
 import { getExpenses } from "../../services/apiExpense";
+import { updateExpenses } from "./ExpenseSlice";
 
 function ExpenseList() {
-  let expenses = useLoaderData();
-
+  const dispatch = useDispatch();
+  const expenses = useSelector((state) => state.expense.expenses);
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
-  console.log(expenses);
 
   useEffect(() => {
-    setFilteredExpenses(expenses);
-  }, [expenses]);
+    getExpenses()
+      .then((expenses) => {
+        setFilteredExpenses(expenses);
+        dispatch(updateExpenses(expenses));
+      })
+      .catch((error) => {
+        throw new Error("Unable to fetch expenses");
+      });
+  }, [dispatch]);
 
   return (
     <div>

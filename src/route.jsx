@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
-import Dashboard, { loader as expenseLoader } from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Error from "./ui/Error";
 import ExpenseList from "./features/expense/ExpenseList";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const routes = createBrowserRouter([
   {
@@ -19,12 +20,19 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard />,
-        loader: expenseLoader,
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/settings",
-        element: <Settings />,
+        element: (
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/login",
@@ -36,8 +44,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/transactions",
-        element: <ExpenseList />,
-        loader: expenseLoader,
+        element: (
+          <ProtectedRoute>
+            <ExpenseList />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

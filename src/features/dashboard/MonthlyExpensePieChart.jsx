@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import PieChartComponent from "../charts/PieChartComponent";
 import { getRandomHexColor } from "../../utils/helper";
 
-const MonthlyExpensePieChart = () => {
+const MonthlyExpensePieChart = ({ expenses }) => {
   const [data, setdata] = useState([]);
   const [colors, setColors] = useState();
 
+  console.log(expenses);
+
   useEffect(() => {
     const fetchDatas = async () => {
-      const res = await fetch("https://api.coincap.io/v2/assets/?limit=20");
-      let data = await res.json();
+      let data;
 
       // Todo: Replace hardcoded data with API response
       data = [
